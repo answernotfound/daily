@@ -1,0 +1,84 @@
+django开发环境搭建：
+1.安装python
+	ubuntu下python已经默认安装
+2.ipython安装
+	ipython是一款python命令行的自动补全工具
+	sudo apt-get install ipython
+	或者
+	sudo pip install ipython
+3.安装pip
+	sudo apt-get install python-pip
+4.安装django
+	pip安装：
+	sudo pip install django
+	或者
+	源码安装：
+	git clone https://github.com/django/django
+	sudo python setup.py install
+5.第一个django项目
+	django-admin startproject mysite
+	进入mysite目录，执行python manage.py runserver，就能看到http://127.0.0.1:8000/下生成了一个网页。
+
+mysite下tree的结果：
+answer@answer-Q460:~/文档/djangoproject/mysite$ tree
+.
+├── manage.py 管理项目：包括数据库建立/服务器运行/测试……
+└── mysite 
+    ├── __init__.py 
+    ├── settings.py 配置文件：应用、中间件、数据库、静态目录各类配置……
+    ├── urls.py URL映射配置文件：决定一个url访问被哪个程序(函数)响应
+    └── wsgi.py python应用程序或框架和Web服务器之间接口
+
+$ python manage.py runserver 0.0.0.0:8080
+	0.0.0.0 表示 任意
+
+在django中创建应用
+django中使用应用来分割功能(可以复用)
+1.创建应用blog
+$ python manage.py startapp blog
+演示，进入mysite目录，通过上述命令创建名为blog的app，通过tree查看blog目录结构：
+answer@answer-Q460:~/文档/djangoproject/mysite$ tree blog/
+blog/
+├── admin.py
+├── __init__.py
+├── migrations
+│   └── __init__.py
+├── models.py
+├── tests.py
+└── views.py 
+
+2.添加blog应用
+$ mysite/settings.py -> INSTALLED_APPS
+添加应用：进入mysite/settings.py文件，在INSTALLED_APPS里面添加"'blog',"这一项。
+修改blog/view.py如下：
+from django.shortcuts import render
+from django.http import HttpResponse
+
+# Create your views here.
+
+def hello(request):
+	return HttpResponse('<html>hello world</html>')
+
+修改mysite/urls.py
+在urlpatterns里面加上映射：
+url(r'helloworld', 'blog.views.hello')
+然后通过$ python manage.py runserver启动server,
+登陆http://127.0.0.1:8000/helloworld可以看到hello world
+
+3.应用目录详解
+views.py 响应客户请求返回html页面
+models.py 定义数据库中的表
+admin.py admin相关
+test.py 测试相关
+
+
+
+
+
+
+
+
+
+
+
+
