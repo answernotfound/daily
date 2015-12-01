@@ -1,0 +1,22 @@
+django开发的一个小例子：一个简单的博客系统。
+一次web访问的是指：
+1.客户发送http请求到web服务器；
+2.web服务器返回html页面给客户。
+
+django概述：
+1.URL配置：简历URL和与响应函数之间的关系
+  url配置需要编辑文件mysite/urls.py
+
+2.视图Views：响应客户http请求，进行逻辑处理，返回给用户html页面
+  blog/views.py
+3.模型Models：描述我们服务器存储的数据（数据库的表）
+  blog/models.py
+4.模板templates：用来生产html页面。返回给用户的html，是由数据（模型）和模板渲染出来的。
+  blog/templates/blog.html
+
+接下来学习django的知识储备：
+  Python基础
+  数据库SQL
+  HTTP协议
+  HTML & CSS
+  正则表达式 re模块
