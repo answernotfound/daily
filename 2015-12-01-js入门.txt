@@ -1,0 +1,101 @@
+在html页面里面添加js代码：
+  <script type="text/javascript"></script>
+也可以在html代码中导入一个js文件：
+  <script src="script.js"></script>
+js的输出：document.write("Hello,world!");
+单行注释，在注释内容前加符号 “//”。
+多行注释以"/*"开始，以"*/"结束。
+变量名可以任意取名，但要遵循命名规则:
+    1.变量必须使用字母、下划线(_)或者美元符($)开始。
+    2.然后可以使用任意多个英文字母、数字、下划线(_)或者美元符($)组成。
+    3.不能使用JavaScript关键词与JavaScript保留字。
+变量要先声明再赋值，如下：
+var mychar;
+mychar="javascript";
+var mynum = 6;
+
+判断语句：
+if(条件)
+{ 条件成立时执行的代码 }
+else
+{ 条件不成立时执行的代码 }
+
+定义函数：
+function 函数名()
+{
+     函数代码;
+}
+
+警告：alert(字符串或变量);  
+
+确认（confirm 消息对话框）
+confirm 消息对话框通常用于允许用户做选择的动作，如：“你对吗？”等。弹出对话框(包括一个确定按钮和一个取消按钮)。
+语法:
+  confirm(str);
+参数说明:
+  str：在消息对话框中要显示的文本
+  返回值: Boolean值
+返回值:
+  当用户点击"确定"按钮时，返回true
+  当用户点击"取消"按钮时，返回false
+
+提问（prompt 消息对话框）
+prompt弹出消息对话框,通常用于询问一些需要与用户交互的信息。弹出消息对话框（包含一个确定按钮、取消按钮与一个文本输入框）。
+语法:
+  prompt(str1, str2);
+参数说明：
+  str1: 要显示在消息对话框中的文本，不可修改
+  str2：文本框中的内容，可以修改
+返回值:
+  1. 点击确定按钮，文本框中的内容将作为函数返回值
+  2. 点击取消按钮，将返回null
+
+打开新窗口（window.open）
+open() 方法可以查找一个已经存在或者新建的浏览器窗口。
+语法：
+  window.open([URL], [窗口名称], [参数字符串])
+例如:打开http://www.imooc.com网站，大小为300px * 200px，无菜单，无工具栏，无状态栏，有滚动条窗口：
+<script type="text/javascript"> window.open('http://www.imooc.com','_blank','width=300,height=200,menubar=no,toolbar=no, status=no,scrollbars=yes')
+</script>
+
+关闭窗口（window.close）
+close()关闭窗口
+用法：
+  window.close();   //关闭本窗口
+或
+  <窗口对象>.close();   //关闭指定的窗口
+
+通过ID获取元素：document.getElementById(“id”) 
+innerHTML 属性
+  innerHTML 属性用于获取或替换 HTML 元素的内容。  
+  语法：Object.innerHTML
+改变 HTML 样式：Object.style.property=new style;
+样例：
+<p id="pcon">Hello World!</p>
+<script>
+   var mychar = document.getElementById("pcon");
+   mychar.style.color="red";
+   mychar.style.fontSize="20";
+   mychar.style.backgroundColor ="blue";
+</script>
+
+显示和隐藏（display属性）
+网页中经常会看到显示和隐藏的效果，可通过display属性来设置。
+语法：
+  Object.style.display = value
+注意:Object是获取的元素对象，如通过document.getElementById("id")获取的元素。
+value的之只能是：
+  none :隐藏
+或者
+  block :显示
+
+控制类名（className 属性）
+  className 属性设置或返回元素的class 属性。
+语法：object.className = classname
+
+
+
+
+
+
+
