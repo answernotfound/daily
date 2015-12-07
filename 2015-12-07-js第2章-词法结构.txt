@@ -1,0 +1,114 @@
+第2章 词法结构
+2.1 字符集
+JavaScript程序是用Unicode字符集编写的。
+出了可以识别普通的空格符(\u0020),JavaScript还可以识别：
+  水平制表符(\u0009)
+  垂直制表符(\u000B)
+  换页符(\u000C)
+  不中断空白(\u00A0)
+  字节序标记(\uFEFF)
+JavaScript将如下字符识别为行结束符：
+  换行符(\u000A)
+  回车符(\u000D)
+  行分隔符(\u2028)
+  段分隔符(\u2029)
+回车符加换行符在一起被解析为一个单行结束符。
+
+"café" === "caf\u00e9"	// => true	试了一下false，应该是我当前环境的编码不是unicode
+
+2.2 注释
+// 这里是单行注释
+/* 这里是一段注释 */	// 这里是另一端注释
+/*
+* 这又是一段注释
+* 这里的注释可以连写多行
+*/
+
+2.3 直接量(literal)
+所谓直接量(literal),就是程序中直接是用的数据值。下面列出的都是直接量：
+12	// 数字
+1.2	// 小数
+"hello world"	// 字符串文本
+'Hi'	// 另一个字符串
+true	// 布尔值
+false	// 另一个布尔值
+/javascript/gi	// 正则表达式直接量(用作模式匹配)
+null	// 空
+
+{ x:1, y:2 }	// 对象
+[1,2,3,4,5]	// 数组
+
+2.4 标识符和保留字
+标识符就是一个名字。在JavaScript中，标识符用来对变量和函数进行命名，或者用作JavaScript代码中某些循环语句中的跳转位置的标记。JavaScript标识符必须以字母、下划线（_）或美元符（$）开始。后续的字符可以是字母、数字、下划线或美元符（数字是不允许作为首字符出现的，以便JavaScript可以轻易区分开标识符和数字）。下面是合法的标识符：
+  i
+  my_variable_name
+  v13
+  _dummy
+  $str
+JavaScript允许标志符中出现Unicode字符集中的Mn、Mc和Pc类。
+(在spidermonkey和firefox中试了一下好想不行的样子，可能还是编码的问题)
+
+JavaScript把一些标识符拿出来用做自己的关键字：
+break		delete	function 	return	typeof
+case		do	if		switch	var
+catch		else	in		this	void
+continue	false	instanceof	throw	while
+debugger	finally	new		true	with
+default		for	null		try
+
+JavaScript同样保留了一些关键字，这些关键字在当前的语言版本中并没有使用，但是在未来版本种可能会用到。ECMAScript5保留了这些关键字：
+class	const	enum	export	extends	import	super
+
+此外，下面这些关键字在普通的JavaScript代码中是合法的，但是在严格模式在是保留字：
+implements	let	private		public	yield
+interface	package	protected	static
+
+严格模式同样对下面的标识符的使用做了严格限制，他们并不完全是保留字，但不能用作变量名、函数名或参数名：
+arguments	eval
+
+在ECMAScript 3实现的解释器上运行的话，应当避免使用这些关键字作为标识符：
+abstract	double	goto		native		static
+boolean		enum	implements	package		super
+byte		export	import		private		synchronized
+char		extends	int		protected	throws
+class		final	interface	public		transient
+const		float	long		short		volatile
+
+JavaScript域定义了很多全局变量和函数，应当避免把他们的名字用作变量名和函数名：
+arguments		encodeURI		Infinity	Number		RegExp
+Array			encodeURIComponent	isFinite	Object		String
+Boolean			Error			isNaN		parseFloat	SyntexError
+Date			eval			JSON		parseInt	TypeError
+decodeURI		EvalError		Math		RangeError	undefined
+decodeURIComponent	Function		NaN		ReferenceError	URIError
+
+每一种特定的JavaScript运行环境(客户端、服务器端等)都有自己的一个全局属性列表。
+
+2.5 可选的分号
+在JavaScript中，如果语句各自独占一行，通常可以省略语句之间的分号
+JavaScript只有在缺少了分号就无法正确解析代码的时候才会填补分号。
+  var a
+  a
+  =
+  3
+  console.log(a)
+JavaScript将其解析为：
+  var a; a = 3; console.log(a);
+
+  return
+  true
+会被解析成"return; true;"而不是"return true;"
+
+  x
+  ++
+  y
+会被解析成"x; ++y;"而不是"x++; y;"
+
+
+
+
+
+
+
+
+
